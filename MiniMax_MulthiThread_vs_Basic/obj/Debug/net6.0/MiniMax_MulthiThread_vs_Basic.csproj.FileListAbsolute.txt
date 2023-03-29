@@ -1,0 +1,15 @@
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\bin\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.exe
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\bin\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.deps.json
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\bin\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.runtimeconfig.json
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\bin\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.dll
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\bin\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.pdb
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.csproj.AssemblyReference.cache
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.AssemblyInfoInputs.cache
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.AssemblyInfo.cs
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.csproj.CoreCompileInputs.cache
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.dll
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\refint\MiniMax_MulthiThread_vs_Basic.dll
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.pdb
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\MiniMax_MulthiThread_vs_Basic.genruntimeconfig.cache
+D:\GitLab\CourseWork - MiniMax\MiniMax_MulthiThread_vs_Basic\obj\Debug\net6.0\ref\MiniMax_MulthiThread_vs_Basic.dll

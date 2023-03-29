@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MiniMax_MulthiThread_vs_Basic/1.0.0": {
+        "runtime": {
+          "MiniMax_MulthiThread_vs_Basic.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MiniMax_MulthiThread_vs_Basic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
