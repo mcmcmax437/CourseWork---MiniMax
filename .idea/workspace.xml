@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c8168403-96c4-4c61-a75c-19dc20909c46" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/MiniMax_MulthiThread_vs_Basic/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/MiniMax_MulthiThread_vs_Basic/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/MiniMax_MulthiThread_vs_Basic/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/MiniMax_MulthiThread_vs_Basic/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/ProjectEvaluation/minimax_multhithread_vs_basic.metadata.v5.2" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/ProjectEvaluation/minimax_multhithread_vs_basic.metadata.v5.2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/ProjectEvaluation/minimax_multhithread_vs_basic.projects.v5.2" beforeDir="false" afterPath="$PROJECT_DIR$/MiniMax_MulthiThread_vs_Basic/.vs/ProjectEvaluation/minimax_multhithread_vs_basic.projects.v5.2" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2O09MpGIQsyjCk03JcAwp8auirl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/Labs/Parallel-Computing-Technologies-Labs/Laba2_TPO"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c8168403-96c4-4c61-a75c-19dc20909c46" name="Changes" comment="" />
+      <created>1680686587113</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680686587113</updated>
+    </task>
+    <servers />
+  </component>
+</project>
