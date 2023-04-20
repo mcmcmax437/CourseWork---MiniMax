@@ -1,130 +1,137 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
-class Node
+namespace MiniMax_MulthiThread_vs_Basic
 {
-    public int data;
-    public List<Node> children;
-
-    public Node(int data)
+    class Program
     {
-        this.data = data;
-        this.children = new List<Node>();
-    }
-
-    public void AddChild(Node child)
-    {
-        this.children.Add(child);
-    }
-}
-
-class Tree
-{
-    public Node root;
-
-    public Tree()
-    {
-        this.root = null;
-    }
-
-    public void CreateTree(int depth, int numChildren)
-    {
-        Random random = new Random();
-        Queue<Node> queue = new Queue<Node>();
-        this.root = new Node(random.Next(1, 100));
-        queue.Enqueue(this.root);
-        while (queue.Count > 0 && depth > 0)
+        static void Main(string[] args)
         {
-            int size = queue.Count;
-            for (int i = 0; i < size; i++)
+            Console.WriteLine("Enter tree depth:");
+            int depth = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter number of children per node:");
+            int numChildren = int.Parse(Console.ReadLine());
+
+            Tree tree = new Tree(depth, numChildren);
+
+            Console.WriteLine("Starting basic minimax...");
+            Stopwatch basicStopwatch = Stopwatch.StartNew();          
+            int basicResult = Minimax(true, depth, tree.Root);
+            basicStopwatch.Stop();
+
+            Console.WriteLine($"Basic minimax result: {basicResult}");
+            Console.WriteLine($"Time taken: {basicStopwatch.ElapsedMilliseconds}ms");
+
+            Console.WriteLine("Starting parallel/minithreaded minimax...");
+            Stopwatch parallelStopwatch = Stopwatch.StartNew();
+            int parallelResult = ParallelMinimax(true, tree.Root, depth);
+            parallelStopwatch.Stop();
+
+            Console.WriteLine($"Parallel/minithreaded minimax result: {parallelResult}");
+            Console.WriteLine($"Time taken: {parallelStopwatch.ElapsedMilliseconds}ms");
+
+
+
+            long res = basicStopwatch.ElapsedMilliseconds / parallelStopwatch.ElapsedMilliseconds;
+            Console.WriteLine($"Speed Up = {basicStopwatch.ElapsedMilliseconds} / {parallelStopwatch.ElapsedMilliseconds} = {res}");
+
+            Console.ReadLine();
+        }
+
+        static int ParallelMinimax(bool isMaximizingPlayer, Node node, int depth)
+        {
+            if (depth == 0 || node.Children.Count == 0)
+                return node.Value;
+
+            object lockObject = new object();
+            int result = isMaximizingPlayer ? int.MinValue : int.MaxValue;
+            int state = result;
+            Parallel.ForEach(node.Children, () => isMaximizingPlayer ? int.MinValue : int.MaxValue, (child, state, localResult) =>
             {
-                Node node = queue.Dequeue();
-                for (int j = 0; j < numChildren; j++)
+                localResult = Minimax(!isMaximizingPlayer, depth - 1, child);
+                result = GetResult(result, (int)localResult, isMaximizingPlayer);
+                return result;
+            },
+            (localResult) =>
+            {
+                lock (lockObject)
                 {
-                    Node child = new Node(random.Next(1, 100));
-                    node.AddChild(child);
-                    queue.Enqueue(child);
+                    result = GetResult(result, localResult, isMaximizingPlayer);
                 }
-            }
-            depth--;
-        }
-    }
+            });
 
-    public int PrintTree()
-    {
-        return PrintTreeHelper(this.root, "");
-    }
-
-    private int PrintTreeHelper(Node node, string indent)
-    {
-        if (node == null) return 0;
-       // Console.WriteLine(indent + node.data);                //друк дерева
-        int count = 1;
-        foreach (Node child in node.children)
-        {
-            count += PrintTreeHelper(child, indent + "  ");
-        }
-        return count;
-    }
-
-    public int Minimax()
-    {
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
-
-        int result = MinimaxHelper(this.root, true);
-
-        stopwatch.Stop();
-        Console.WriteLine("Minimax algorithm took " + stopwatch.ElapsedMilliseconds + " milliseconds");
-        return result;
-    }
-
-    private int MinimaxHelper(Node node, bool isMaximizing)
-    {
-        if (node.children.Count == 0)
-        {
-            return node.data;
+            return result;
         }
 
-        if (isMaximizing)
+
+
+
+        static int Minimax(bool isMaximizingPlayer, int depth, Node node)
         {
-            int bestValue = int.MinValue;
-            foreach (Node child in node.children)
+            if (depth == 0 || node.Children.Count == 0)
+                return node.Value;
+
+            int result = isMaximizingPlayer ? int.MinValue : int.MaxValue;
+
+            foreach (Node child in node.Children)
             {
-                int value = MinimaxHelper(child, false);
-                bestValue = Math.Max(bestValue, value);
+                int childValue = Minimax(!isMaximizingPlayer, depth - 1, child);
+
+                result = GetResult(result, childValue, isMaximizingPlayer);
             }
-            return bestValue;
+
+            return result;
         }
-        else
+
+
+        static int GetResult(int oldVa1ue, int newValue, bool isMaximizingPlayer)
         {
-            int bestValue = int.MaxValue;
-            foreach (Node child in node.children)
+            return (isMaximizingPlayer && newValue > oldVa1ue) || (!isMaximizingPlayer && newValue < oldVa1ue)
+                ? newValue
+                : oldVa1ue;
+        }
+
+
+        class Tree
+        {
+            public Node Root { get; private set; }
+
+            public Tree(int depth, int numChildren)
             {
-                int value = MinimaxHelper(child, true);
-                bestValue = Math.Min(bestValue, value);
+                Random random = new Random();
+                Root = GenerateTree(depth, numChildren, random);
             }
-            return bestValue;
+
+            private Node GenerateTree(int depth, int numChildren, Random random)
+            {
+                int value = random.Next(1, 100);
+                Node node = new Node(value);
+
+                if (depth > 0)
+                {
+                    for (int i = 0; i < numChildren; i++)
+                    {
+                        node.Children.Add(GenerateTree(depth - 1, numChildren, random));
+                    }
+                }
+
+                return node;
+            }          
+        }
+
+        class Node
+        {
+            public int Value { get; private set; }
+            public List<Node> Children { get; private set; }
+            public Node(int value)
+            {
+                Value = value;
+                Children = new List<Node>();
+            }
         }
     }
 }
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        Tree tree = new Tree();
-        int depth = 20;
-        int numChildren = 2;
-
-        tree.CreateTree(depth, numChildren);
-        int totalNodes = tree.PrintTree();
-        Console.WriteLine("-----------------------");
-        Console.WriteLine("The total number of nodes in the tree is " + totalNodes);
-        Console.WriteLine("-----------------------");
-        int result = tree.Minimax();
-
-        Console.WriteLine("The result of the minimax algorithm is " + result);
-    }
-}
