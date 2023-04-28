@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MiniMax_MulthiThread_vs_Basic.Class;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -25,21 +26,26 @@ namespace MiniMax_MulthiThread_vs_Basic
             Console.WriteLine($"Basic minimax result: {basicResult}");
             Console.WriteLine($"Time taken: {basicStopwatch.ElapsedMilliseconds}ms");
 
-            Console.WriteLine("Starting parallel/minithreaded minimax...");
+            Console.WriteLine("Starting parallel/multithreaded minimax...");
             Stopwatch parallelStopwatch = Stopwatch.StartNew();
             int parallelResult = ParallelMinimax(true, tree.Root, depth);
             parallelStopwatch.Stop();
 
-            Console.WriteLine($"Parallel/minithreaded minimax result: {parallelResult}");
+            Console.WriteLine($"Parallel/multithreaded minimax result: {parallelResult}");
             Console.WriteLine($"Time taken: {parallelStopwatch.ElapsedMilliseconds}ms");
 
 
+            float parallTIME = parallelStopwatch.ElapsedMilliseconds;
+            float basicTIME = basicStopwatch.ElapsedMilliseconds;
+            float res = basicTIME / parallTIME;
 
-            long res = basicStopwatch.ElapsedMilliseconds / parallelStopwatch.ElapsedMilliseconds;
             Console.WriteLine($"Speed Up = {basicStopwatch.ElapsedMilliseconds} / {parallelStopwatch.ElapsedMilliseconds} = {res}");
 
             Console.ReadLine();
         }
+
+
+
 
         static int ParallelMinimax(bool isMaximizingPlayer, Node node, int depth)
         {
@@ -66,9 +72,6 @@ namespace MiniMax_MulthiThread_vs_Basic
             return result;
         }
 
-
-
-
         static int Minimax(bool isMaximizingPlayer, int depth, Node node)
         {
             if (depth == 0 || node.Children.Count == 0)
@@ -86,7 +89,6 @@ namespace MiniMax_MulthiThread_vs_Basic
             return result;
         }
 
-
         static int GetResult(int oldVa1ue, int newValue, bool isMaximizingPlayer)
         {
             return (isMaximizingPlayer && newValue > oldVa1ue) || (!isMaximizingPlayer && newValue < oldVa1ue)
@@ -94,44 +96,6 @@ namespace MiniMax_MulthiThread_vs_Basic
                 : oldVa1ue;
         }
 
-
-        class Tree
-        {
-            public Node Root { get; private set; }
-
-            public Tree(int depth, int numChildren)
-            {
-                Random random = new Random();
-                Root = GenerateTree(depth, numChildren, random);
-            }
-
-            private Node GenerateTree(int depth, int numChildren, Random random)
-            {
-                int value = random.Next(1, 100);
-                Node node = new Node(value);
-
-                if (depth > 0)
-                {
-                    for (int i = 0; i < numChildren; i++)
-                    {
-                        node.Children.Add(GenerateTree(depth - 1, numChildren, random));
-                    }
-                }
-
-                return node;
-            }          
-        }
-
-        class Node
-        {
-            public int Value { get; private set; }
-            public List<Node> Children { get; private set; }
-            public Node(int value)
-            {
-                Value = value;
-                Children = new List<Node>();
-            }
-        }
     }
 }
 
