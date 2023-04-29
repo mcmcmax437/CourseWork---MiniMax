@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MiniMax_MulthiThread_vs_Basic"
+    "\\MiniMax_MulthiThread_vs_Basic",
+    "\\MiniMax_MulthiThread_vs_Basic\\Class"
   ],
-  "SelectedNode": "\\MiniMax_MulthiThread_vs_Basic\\Program.cs",
+  "SelectedNode": "\\MiniMax_MulthiThread_vs_Basic\\Class\\Tree.cs",
   "PreviewInSolutionExplorer": false
 }

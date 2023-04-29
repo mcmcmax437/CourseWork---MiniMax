@@ -10,6 +10,7 @@ namespace MiniMax_MulthiThread_vs_Basic
     {
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Enter tree depth:");
             int depth = int.Parse(Console.ReadLine());
 
@@ -17,6 +18,9 @@ namespace MiniMax_MulthiThread_vs_Basic
             int numChildren = int.Parse(Console.ReadLine());
 
             Tree tree = new Tree(depth, numChildren);
+
+            int numNodes = CountNodes(tree.Root);
+            Console.WriteLine($"Number of nodes in the tree: {numNodes}");
 
             Console.WriteLine("Starting basic minimax...");
             Stopwatch basicStopwatch = Stopwatch.StartNew();          
@@ -94,6 +98,18 @@ namespace MiniMax_MulthiThread_vs_Basic
             return (isMaximizingPlayer && newValue > oldVa1ue) || (!isMaximizingPlayer && newValue < oldVa1ue)
                 ? newValue
                 : oldVa1ue;
+        }
+
+        static int CountNodes(Node node)
+        {
+            int count = 1; 
+
+            foreach (Node child in node.Children)
+            {
+                count += CountNodes(child); 
+            }
+
+            return count;
         }
 
     }
